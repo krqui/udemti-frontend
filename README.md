@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-
+Proyecto para practicar y repasar react en Typescript y estilos con scss.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
