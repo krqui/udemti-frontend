@@ -1,0 +1,38 @@
+.box {
+  width: 90vw;
+  background-color: rgb(0, 0, 0);
+  margin-left: 5vw;
+  margin-top: 2vh;
+
+  &__headers {
+    width: 98%;
+    background-color: antiquewhite;
+    margin: 30px auto;
+
+    &__item {
+      font-size: 30px;
+      padding: 1.2rem;
+
+      .titless {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /*background-color: rgb(0, 0, 0);*/
+        padding: 0.5rem 1rem;
+        border-radius: 0.3rem;
+        transition: all 0.3s;
+        border-style: solid;
+        border-color: red;
+
+        &__photo {
+          background-color: red;
+          width: 84px;
+        }
+
+        &__ {
+          width: 150px;
+        }
+      }
+    }
+  }
+}

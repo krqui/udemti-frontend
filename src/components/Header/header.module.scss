@@ -1,0 +1,75 @@
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  margin-left: 5vw;
+  margin-top: 2vh;
+  align-items: center;
+
+  .filtersContainer {
+    padding-bottom: toRem(10);
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      li {
+        background-color: black;
+        color: rgb(255, 149, 19);
+        padding: toRem(10) toRem(15);
+        font-size: 30px;
+        font-weight: bold;
+
+        ul {
+          display: none;
+        }
+        &:hover {
+          cursor: pointer;
+          color: brown;
+          border-radius: toRem(10);
+          ul {
+            margin-top: toRem(0.5);
+            width: toRem(150);
+            border-radius: toRem(5);
+            background-color: orange;
+            display: flex;
+            position: absolute;
+            flex-direction: column;
+            z-index: 2;
+          }
+        }
+      }
+    }
+  }
+
+  .toFilter {
+    span {
+      padding: toRem(5) toRem(5) toRem(5) toRem(5);
+      border: 2px solid black;
+      border-radius: toRem(10);
+      margin: 0 toRem(5);
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    button {
+      padding: 10px 10px;
+      border-radius: 15px;
+      margin: 10px 5px;
+      background-color: black;
+      color: wheat;
+      font-weight: bold;
+      border: 2px solid red;
+
+      &:hover {
+        cursor: pointer;
+        background-color: wheat;
+        color: rgb(0, 0, 0);
+        border: 2px solid rgb(0, 0, 0);
+        scale: 1.2;
+      }
+    }
+  }
+}
