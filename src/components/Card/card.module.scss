@@ -3,9 +3,7 @@
   color: skyblue;
   padding: 1.2rem;
   .line {
-    /*margin-bottom: 1rem;*/
     display: flex;
-    /*justify-content: space-between;*/
     align-items: center;
     padding: 0.5rem 1rem;
     border-radius: 0.3rem;
@@ -21,12 +19,12 @@
 
   .user {
     display: flex;
-    width: 480px;
+    width: 400px;
     align-items: center;
     .profile {
-      height: 90px; /*object-fit: cover;*/
+      height: 90px;
       img {
-        height: 90px; /*object-fit: cover;*/
+        height: 90px;
       }
     }
     .details {
@@ -49,7 +47,6 @@
 
 .status {
   display: flex;
-  /*background-color: white;*/
   width: 220px;
   justify-content: left;
   align-items: center;
@@ -67,7 +64,7 @@
     margin-left: 0.5rem;
   }
 
-  .matriculado {
+  .enrolled {
     background-color: green;
   }
   .nomatriculado {
@@ -88,7 +85,7 @@
 
 .DNI {
   display: flex;
-  width: 120px;
+  width: 124px;
   justify-content: left;
   align-items: center;
   font-size: 22px;
@@ -96,7 +93,7 @@
 
 .nationality {
   display: flex;
-  width: 120px;
+  width: 140px;
   justify-content: left;
   align-items: center;
   font-size: 22px;
@@ -105,11 +102,36 @@
 .c {
   display: flex;
   flex-direction: row;
+  width: 500px;
   .coursesIds {
     display: flex;
     flex-wrap: wrap;
     background-color: rgb(178, 91, 91);
     list-style: none;
     width: 100%;
+  }
+}
+
+.buttons {
+  &__delete {
+    margin: 0 10px;
+    padding: 5px 10px;
+    background-color: rgb(255, 183, 0);
+    transition: 0.3s;
+    &:hover {
+      background-color: rgb(255, 149, 0);
+      scale: 1.5;
+    }
+  }
+
+  &__info {
+    padding: 5px 10px;
+    background-color: rgb(104, 195, 234);
+    transition: 0.3s;
+
+    &:hover {
+      background-color: rgb(69, 177, 223);
+      scale: 1.5;
+    }
   }
 }

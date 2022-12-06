@@ -1,36 +1,48 @@
 .box {
-  width: 90vw;
+  margin: 0 auto;
   background-color: rgb(0, 0, 0);
-  margin-left: 5vw;
-  margin-top: 2vh;
+  width: 1400px;
 
   &__headers {
-    width: 98%;
-    background-color: antiquewhite;
+    background-color: black;
     margin: 30px auto;
 
     &__item {
+      display: inline-block;
       font-size: 30px;
       padding: 1.2rem;
+      background-color: antiquewhite;
 
       .titless {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        /*background-color: rgb(0, 0, 0);*/
         padding: 0.5rem 1rem;
         border-radius: 0.3rem;
         transition: all 0.3s;
         border-style: solid;
         border-color: red;
+        text-align: left;
 
-        &__photo {
-          background-color: red;
-          width: 84px;
+        &__name {
+          display: inline-block;
+          width: 330px;
         }
 
-        &__ {
-          width: 150px;
+        &__status {
+          display: inline-block;
+          width: 210px;
+        }
+
+        &__dni {
+          display: inline-block;
+          width: 100px;
+        }
+
+        &__nationality {
+          display: inline-block;
+          width: 180px;
+        }
+        &__courses {
+          display: inline-block;
+          width: 460px;
         }
       }
     }

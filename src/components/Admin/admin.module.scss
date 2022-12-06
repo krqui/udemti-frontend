@@ -1,0 +1,32 @@
+.container {
+  display: block;
+  width: 100vw;
+  height: 1100px;
+  background-color: rgb(0, 136, 169);
+
+  &__top {
+    display: block;
+    height: 120px;
+    background-color: rgb(112, 112, 253);
+
+    &__title {
+      display: block;
+
+      .title {
+        color: whitesmoke;
+        font-size: 36px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    }
+
+    &__subtitle {
+      display: block;
+
+      .subtitle {
+        color: wheat;
+        font-size: 26px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    }
+  }
+}

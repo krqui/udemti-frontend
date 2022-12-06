@@ -27,9 +27,14 @@ const NavBar = () => {
           </li>
         </ul>
       </nav>
-      <a className={ss.cta} href='#'>
-        <button className={ss.cta__button}>Contact</button>
-      </a>
+      <div className={ss.nav__buttons}>
+        <a className={ss.cta} href='/admin/0'>
+          <button className={ss.cta__button}>Admin</button>
+        </a>
+        <a className={ss.cta} href='#'>
+          <button className={ss.cta__button}>Contact</button>
+        </a>
+      </div>
     </div>
   )
 }

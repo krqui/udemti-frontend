@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Students } from '../../interfaces/Students'
+import { Students, StudentsById } from '../../interfaces/Students'
 
 interface StudentState {
   students: Students[]
-  studentsById: {}
+  studentsById: StudentsById[]
   searchEmpty: boolean
   filterEmpty: boolean
   studentsCopy: Students[]
@@ -13,7 +13,7 @@ interface StudentState {
 const initialState: StudentState = {
   students: [],
   studentsCopy: [],
-  studentsById: {},
+  studentsById: [],
   searchEmpty: false,
   filterEmpty: false,
   filterObject: {},
@@ -26,7 +26,7 @@ const studentSlice = createSlice({
     getStudents(state, action: PayloadAction<[]>) {
       state.students = action.payload
     },
-    getStudentsById(state, action) {
+    getStudentsById(state, action: PayloadAction<[]>) {
       state.studentsById = action.payload
     },
     searchStudent(state, action: PayloadAction<[]>) {

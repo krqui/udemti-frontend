@@ -5,6 +5,7 @@
   padding: 30px 10%;
 
   &__logo {
+    min-width: 196px;
     color: white;
     cursor: pointer;
 
@@ -32,6 +33,7 @@
   .nav {
     &__links {
       list-style: none;
+      min-width: 534px;
       li {
         display: inline-block;
         padding: 0px 20px;
@@ -44,10 +46,15 @@
         }
       }
     }
+
+    &__buttons {
+      min-width: 230px;
+    }
   }
 
   .cta {
     &__button {
+      margin-left: 5px;
       padding: 9px 25px;
       background-color: rgba(0, 136, 169, 1);
       border: none;

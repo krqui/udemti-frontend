@@ -7,4 +7,17 @@ export interface Students {
   nationality: string
   DNI: number
   courses: any
+  id: number
+}
+
+export interface StudentsById {
+  name: string
+  surname: string
+  status: string
+  birthdate: string
+  nationality: string
+  DNI: number
+  createdAt: string
+  updatedAt: string
+  courses: [string]
 }

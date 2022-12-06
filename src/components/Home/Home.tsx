@@ -1,6 +1,5 @@
 import sc from './home.module.scss'
 import { useEffect } from 'react'
-//redux
 import { fetchAllStudents } from '../../redux/thunks/studentsThunks'
 import { useAppSelector, useAppDispatch } from '../../redux/hooks'
 import StudentsList from '../StudentsList/StudentsList'
