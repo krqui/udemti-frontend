@@ -1,15 +1,21 @@
 import { Students } from '../../interfaces/Students'
 import Profile from '../../assets/images/profile.png'
 import styles from '../Card/card.module.scss'
+import axios from 'axios'
 const Card = ({
   name,
   surname,
   status,
-  birthdate,
+  id,
   DNI,
   nationality,
   courses,
 }: Students) => {
+  const handleOnClick = (e: any) => {
+    axios.delete(`/students/${e.target.value}`)
+    return alert('Please, press F5')
+  }
+
   return (
     <div key={DNI} className={styles.divCard}>
       <div className={styles.line}>
@@ -25,18 +31,13 @@ const Card = ({
 
         <div className={styles.status}>
           {status == 'Enrolled' ? (
-            <span className={styles.matriculado}></span>
-          ) : status == 'Not enrolled' ? (
+            <span className={styles.enrolled}></span>
+          ) : status == 'NotEnrolled' ? (
             <span className={styles.nomatriculado}></span>
           ) : (
             <span className={styles.retirado}></span>
           )}
           <p>{status}</p>
-        </div>
-
-        <div className={styles.birthdate}>
-          <span></span>
-          <p>{`(${birthdate})`}</p>
         </div>
         <div className={styles.DNI}>
           <span></span>
@@ -52,6 +53,21 @@ const Card = ({
               <p key={f.id}>{`${f.title} ,`}</p>
             ))}
           </div>
+        </div>
+        <div className={styles.buttons}>
+          <span></span>
+          <button
+            className={styles.buttons__delete}
+            value={Number(id)}
+            onClick={e => handleOnClick(e)}>
+            X
+          </button>
+
+          <a href={`../admin/${id}`}>
+            <button type='button' className={styles.buttons__info}>
+              info
+            </button>
+          </a>
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import NavBar from './components/NavBar/NavBar'
 import Home from './components/Home/Home'
+import Admin from './components/Admin/Admin'
 import Footer from './components/Footer/Footer'
 import LandingPage from './components/LandingPage/LandingPage'
 import Enrolment from './components/Enrolment/Enrolment'
@@ -15,6 +16,7 @@ function App() {
           <Route path='/' element={<LandingPage></LandingPage>}></Route>
           <Route path='/courses' element={<Home></Home>}></Route>
           <Route path='/enroll' element={<Enrolment></Enrolment>}></Route>
+          <Route path='/admin/:id' element={<Admin></Admin>}></Route>
         </Routes>
         {/*<Footer></Footer>*/}
       </BrowserRouter>

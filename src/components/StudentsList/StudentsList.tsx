@@ -21,11 +21,11 @@ export const data = [
 
 const StudentsList = ({ students }: Props) => {
   const [currentPage, setCurrentPage] = useState<number>(1)
-  const [studentsPerPage, setStudentsPerPage] = useState<number>(10)
+  const studentsPerPage = 10;
   const lastIndex = currentPage * studentsPerPage
   const firstIndex = lastIndex - studentsPerPage
   const currentStudents = students.slice(firstIndex, lastIndex)
-
+  // console.log(currentStudents);
   // If the current page number is higher than the total of pages, and we aren't in page 1 ...
   // Means that if we apply a filter which renders a max of 6 pages and we were on page 7, we'll be redirected to page 1.
   if (
@@ -54,13 +54,11 @@ const StudentsList = ({ students }: Props) => {
         <div className={styles.box__headers}>
           <div className={styles.box__headers__item}>
             <div className={styles.titless}>
-              <p className={styles.titless__photo}>Photo</p>
               <p className={styles.titless__name}>Name/Surname</p>
-              <p>Status</p>
-              <p>Birthdate</p>
-              <p>DNI</p>
-              <p>Nationality</p>
-              <p>Courses</p>
+              <p className={styles.titless__status}>Status</p>
+              <p className={styles.titless__dni}>DNI</p>
+              <p className={styles.titless__nationality}>Nationality</p>
+              <p className={styles.titless__courses}>Courses</p>
             </div>
           </div>
         </div>
@@ -86,7 +84,8 @@ const StudentsList = ({ students }: Props) => {
                 DNI={e.DNI}
                 createdAt={e.createdAt}
                 nationality={e.nationality}
-                courses={e.courses}></Card>
+                courses={e.courses}
+                id={e.id}></Card>
             )
           })}
         </div>

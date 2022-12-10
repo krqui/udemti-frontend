@@ -22,7 +22,9 @@ const LandingPage = () => {
         <div className={s.options}>
           <div className={s.select__students} id='stails'>
             <button className={s.select__students__button}>
-              <Link to='/courses'>Go to Students List</Link>
+              <Link className={s.select__students__button__link} to='/courses'>
+                Go to Students List
+              </Link>
             </button>
           </div>
           <div className={s.select__register}>
