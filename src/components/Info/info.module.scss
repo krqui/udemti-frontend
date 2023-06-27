@@ -1,0 +1,25 @@
+.student {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    margin:14px 10px;
+
+    &__title {
+        font-size: 20px;
+    }
+    &__props {
+        display: block;
+        height: 186px;
+        margin: 4px 10px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+        &__name , &__surname , &__birthdate, &__nationality, &__DNI {
+            display: flex;
+            width: 180px;
+            margin: 10px 14px;
+            font-size: 16px;
+            font-family: sans-serif;
+            font-weight: 700;
+            color: rgb(0, 0, 0);
+        }
+    }
+}

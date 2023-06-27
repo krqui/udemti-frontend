@@ -8,7 +8,7 @@ import {
 import {
   fetchAllCourses,
   fetchAllStudents,
-  fetchStudentsFilteredByCourses,
+  fetchStudentsByFilters,
 } from '../../redux/thunks/studentsThunks'
 import SearchBar from '../SearchBar/SearchBar'
 import hstyles from './header.module.scss'
@@ -42,7 +42,7 @@ const Header = () => {
     dispatch(fetchAllStudents())
   }
   const handleFilters = () => {
-    dispatch(fetchStudentsFilteredByCourses(filterObject))
+    dispatch(fetchStudentsByFilters(filterObject))
   }
 
   useEffect(() => {

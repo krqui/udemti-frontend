@@ -7,71 +7,66 @@ import {
   searchStudent,
 } from '../slices/studentsSlice'
 import { getCourses } from '../slices/coursesSlice'
+import { ApiMethods } from '../http-provider'
 
-const fetchAllStudents = () => (dispatch: Dispatch) => {
-  axios
-    .get('/students')
-    .then(response => {
-      dispatch(getStudents(response.data))
-    })
-    .catch(error => console.log(error))
+const fetchAllStudents = () => async (dispatch: Dispatch) => {
+  try {
+    const result = await ApiMethods.Get('/students')
+    dispatch(getStudents(result))
+  } catch (e) {
+    throw e
+  }
 }
 
-const fetchStudentsByName = (name: string) => (dispatch: Dispatch) => {
-  axios
-    .get(`/students?name=${name}`)
-    .then(response => {
-      dispatch(searchStudent(response.data))
-    })
-    .catch(error => console.log(error))
-}
-
-const fetchStudentsByDni = (dni: string) => (dispatch: Dispatch) => {
-  axios
-    .get(`/students?dni=${dni}`)
-    .then(response => {
-      dispatch(searchStudent(response.data))
-    })
-    .catch(error => console.log(error))
-}
-
-const fetchStudentsById = (id: number) => (dispatch: Dispatch) => {
-  axios
-    .get(`/students/${id}`)
-    .then(response => {
-      dispatch(getStudentsById(response.data))
-    })
-    .catch(error => console.log(error))
-}
-
-const fetchAllCourses = () => (dispatch: Dispatch) => {
-  axios
-    .get('/courses')
-    .then(response => {
-      dispatch(getCourses(response.data))
-    })
-    .catch(error => console.log(error))
-}
-
-const fetchStudentsFilteredByCourses =
-  (filters: { [key: string]: string }) => (dispatch: Dispatch) => {
-    axios
-      .get(
-        `/students?course=${filters.course ? filters.course : ''}&status=${
-          filters.status ? filters.status : ''
-        }&nationality=${
-          filters.nationality ? filters.nationality : ''
-        }&sortName=${filters.sortName}`,
+const fetchStudentsByParams =
+  (query: string, uniqueparam: string) => async (dispatch: Dispatch) => {
+    try {
+      const result: [] = await ApiMethods.GetParams(
+        '/students?',
+        query,
+        uniqueparam,
       )
-      .then(response => dispatch(getFilters(response.data)))
-      .catch(error => console.log(error))
+      dispatch(searchStudent(result))
+    } catch (e) {
+      throw e
+    }
+  }
+
+const fetchStudentsById = (id: number) => async (dispatch: Dispatch) => {
+  try {
+    const result: [] = await ApiMethods.GetById('/students', id)
+    dispatch(getStudentsById(result))
+  } catch (e) {
+    throw e
+  }
+}
+
+const fetchAllCourses = () => async (dispatch: Dispatch) => {
+  try {
+    const result = await ApiMethods.GetCourses('/courses')
+    dispatch(getCourses(result))
+  } catch (e) {
+    throw e
+  }
+}
+
+const fetchStudentsByFilters =
+  (filters: { [key: string]: string }) => async (dispatch: Dispatch) => {
+    try {
+      const result = await ApiMethods.GetStudentsByFilters(
+        '/students?',
+        filters,
+      )
+      dispatch(getFilters(result))
+    } catch (e) {
+      throw e
+    }
   }
 
 export {
   fetchAllStudents,
-  fetchStudentsByName,
-  fetchStudentsByDni,
+  fetchStudentsByParams,
   fetchAllCourses,
-  fetchStudentsFilteredByCourses,
+  fetchStudentsByFilters,
   fetchStudentsById,
 }

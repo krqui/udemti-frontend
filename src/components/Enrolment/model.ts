@@ -4,7 +4,7 @@ export interface Input {
   status: string
   birthdate: string
   nationality: string
-  DNI: number
+  DNI: string
   coursesIds: number[]
 }
 

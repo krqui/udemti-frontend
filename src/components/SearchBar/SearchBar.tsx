@@ -1,12 +1,12 @@
 import React, { PropsWithChildren, FC, useEffect, useState } from 'react'
 import { ReactFCWithChildren } from '../../redux/store'
-import Swal from 'sweetalert2'
+import Swal, { SweetAlertResult } from 'sweetalert2'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { resetSearch } from '../../redux/slices/studentsSlice'
 import {
   fetchAllStudents,
-  fetchStudentsByDni,
-  fetchStudentsByName,
+  //,
+  fetchStudentsByParams,
 } from '../../redux/thunks/studentsThunks'
 import s from './searchbar.module.scss'
 
@@ -18,7 +18,6 @@ const SearchBar = () => {
   const dispatch = useAppDispatch()
   const [name, setName] = useState<string>('')
   const [dni, setDNI] = useState<string>('')
-  //const [dni, setDNI] = useState<number>(0)
   const { searchEmpty } = useAppSelector(state => state.students)
 
   const handleAlert = () => {
@@ -26,7 +25,7 @@ const SearchBar = () => {
       'Sorry!',
       'No students were found with this characteristic',
       'success',
-    ).then((res: any) => {
+    ).then((res: SweetAlertResult) => {
       if (res) {
         dispatch(resetSearch())
       }
@@ -49,14 +48,14 @@ const SearchBar = () => {
         'Sorry,',
         'student name/surname is required',
         'error',
-      ).then((res: any) => {
+      ).then((res: SweetAlertResult) => {
         if (res) {
           dispatch(resetSearch())
         }
       })
     } else {
       e.preventDefault()
-      dispatch(fetchStudentsByName(name))
+      dispatch(fetchStudentsByParams('name', name))
     }
   }
 
@@ -65,7 +64,7 @@ const SearchBar = () => {
   ) => {
     if (dni.length === 0) {
       return Swal.fire('Sorry,', 'student DNI is required', 'error').then(
-        (res: any) => {
+        (res: SweetAlertResult) => {
           if (res) {
             dispatch(resetSearch())
           }
@@ -73,7 +72,7 @@ const SearchBar = () => {
       )
     } else {
       e.preventDefault()
-      dispatch(fetchStudentsByDni(dni))
+      dispatch(fetchStudentsByParams('dni', dni))
     }
   }
   const reset = () => {
