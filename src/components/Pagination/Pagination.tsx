@@ -8,7 +8,7 @@ import pp from './pagination.module.scss'
 type Prups = {
   studentsPerPage: number
   students: Students[]
-  changePage: any
+  changePage: (pageNumber: number) => void
   currentPage: number
   children: []
 }

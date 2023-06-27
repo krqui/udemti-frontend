@@ -6,7 +6,7 @@ export interface Students {
   createdAt: string
   nationality: string
   DNI: number
-  courses: any
+  courses: []
   id: number
 }
 

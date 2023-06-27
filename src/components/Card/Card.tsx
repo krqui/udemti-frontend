@@ -1,8 +1,10 @@
 import { Students } from '../../interfaces/Students'
 import Profile from '../../assets/images/profile.png'
 import styles from '../Card/card.module.scss'
-import axios from 'axios'
-const Card = ({
+import { ApiMethods } from '../../redux/http-provider'
+import React from 'react'
+
+const Card: React.FC<Students> = ({
   name,
   surname,
   status,
@@ -11,9 +13,20 @@ const Card = ({
   nationality,
   courses,
 }: Students) => {
-  const handleOnClick = (e: any) => {
-    axios.delete(`/students/${e.target.value}`)
-    return alert('Please, press F5')
+  const handleOnClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    if (event && event.target) {
+      try {
+        ApiMethods.Delete(
+          '/students',
+          Number((event.target as HTMLButtonElement).value),
+        )
+        return alert('Please, press F5')
+      } catch (e) {
+        throw e
+      }
+    }
   }
 
   return (
@@ -21,7 +34,7 @@ const Card = ({
       <div className={styles.line}>
         <div className={styles.user}>
           <div className={styles.profile}>
-            <img src={Profile}></img>
+            <img alt='ProfilePicture' src={Profile}></img>
           </div>
           <div className={styles.details}>
             <h3 className={styles.name}>{name}</h3>
@@ -30,9 +43,9 @@ const Card = ({
         </div>
 
         <div className={styles.status}>
-          {status == 'Enrolled' ? (
+          {status === 'Enrolled' ? (
             <span className={styles.enrolled}></span>
-          ) : status == 'NotEnrolled' ? (
+          ) : status === 'NotEnrolled' ? (
             <span className={styles.nomatriculado}></span>
           ) : (
             <span className={styles.retirado}></span>
@@ -49,7 +62,7 @@ const Card = ({
         </div>
         <div className={styles.c}>
           <div className={styles.coursesIds}>
-            {courses.map((f: any) => (
+            {courses.map((f:{[key:string]:string}) => (
               <p key={f.id}>{`${f.title} ,`}</p>
             ))}
           </div>
@@ -59,7 +72,7 @@ const Card = ({
           <button
             className={styles.buttons__delete}
             value={Number(id)}
-            onClick={e => handleOnClick(e)}>
+            onClick={handleOnClick}>
             X
           </button>
 
@@ -73,5 +86,8 @@ const Card = ({
     </div>
   )
 }
-
+/*
+ onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+              handleOnClick(e)
+            }*/
 export default Card

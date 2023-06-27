@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks'
 import { RootState } from '../../redux/store'
 import { fetchAllCourses } from '../../redux/thunks/studentsThunks'
 import { Input, Nombres, Teacher, Course, Errors } from './model'
-import axios from 'axios'
 import su from '../Enrolment/enrolment.module.scss'
+import { ApiMethods } from '../../redux/http-provider'
 let norepeat: [number] = [0]
 let valueBoolean = false
 
@@ -16,7 +16,7 @@ const Enrolment: React.FC = () => {
     status: '',
     birthdate: '',
     nationality: '',
-    DNI: 0,
+    DNI: '',
     coursesIds: [],
   })
   const [nombres, setNombres] = useState<Nombres>({
@@ -45,8 +45,8 @@ const Enrolment: React.FC = () => {
   useEffect(() => {
     dispatch(fetchAllCourses())
   }, [dispatch])
-
-  function validate(input: any) {
+// Mi tarea aqui es ver que valor le doy al any
+  function validate(input: Input) {
     let errors = {
       name: '',
       surname: '',
@@ -106,7 +106,7 @@ const Enrolment: React.FC = () => {
     return errors
   }
 
-  function handleInput(e: any) {
+  function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
@@ -119,10 +119,10 @@ const Enrolment: React.FC = () => {
     )
   }
 
-  const handleDNI = (e: any) => {
+  const handleDNI = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput({
       ...input,
-      DNI: Number(e.target.value),
+      DNI: (e.target.value),
     })
     setErrors(
       validate({
@@ -132,34 +132,35 @@ const Enrolment: React.FC = () => {
     )
   }
 
-  const handleCourse = (e: any) => {
+  const handleCourse = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
-    if (norepeat.includes(e.target.value)) {
+    const idCourse=Number((e.target as HTMLButtonElement).value)
+    if (norepeat.includes(idCourse)) {
       return ''
     } else {
       setInput({
         ...input,
-        coursesIds: [...input.coursesIds, Number(e.target.value)],
+        coursesIds: [...input.coursesIds, Number(idCourse)],
       })
       setErrors(
         validate({
           ...input,
-          coursesIds: [...input.coursesIds, Number(e.target.value)],
+          coursesIds: [...input.coursesIds, Number(idCourse)],
         }),
       )
-      norepeat.push(e.target.value)
+      norepeat.push(idCourse)
       console.log(`no repeat ahora contiene: ${norepeat}`)
-      console.log(`ya que se guardo el id ${e.target.value}`)
-      let elnombre = courses[e.target.value - 1]
-      console.log(elnombre)
+      console.log(`ya que se guardo el id ${idCourse}`)
+      let courseJustAdded = courses[idCourse - 1]
+      console.log(courseJustAdded)
       setNombres({
         ...nombres,
-        abc: [...nombres.abc, elnombre.title],
+        abc: [...nombres.abc, courseJustAdded.title],
       })
     }
   }
 
-  const resetCourses = (e: any) => {
+  const resetCourses = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
     setInput({
       ...input,
@@ -170,25 +171,27 @@ const Enrolment: React.FC = () => {
     })
     norepeat = [0]
   }
-  const handleStatus = (e: any) => {
+  const handleStatus = (e: React.MouseEvent<HTMLButtonElement,MouseEvent>) => {
     e.preventDefault()
+    const targered= e.target as HTMLButtonElement
     setInput({
       ...input,
-      [e.target.name]: e.target.value,
+      [targered.name]: targered.value,
     })
     setErrors(
       validate({
         ...input,
-        [e.target.name]: e.target.value,
+        [targered.name]: targered.value,
       }),
     )
   }
-  const handleTeacher = (e: any) => {
+  const handleTeacher = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
-    if (e.target.value === 'true') {
+    const targered= e.target as HTMLButtonElement
+    if (targered.value === 'true') {
       valueBoolean = true
       console.log(`El valor ingresado es ${valueBoolean}`)
-    } else if (e.target.value === 'false') {
+    } else if (targered.value === 'false') {
       valueBoolean = false
       console.log(`El valor ingresado es ${valueBoolean}`)
     }
@@ -196,7 +199,7 @@ const Enrolment: React.FC = () => {
       isTeacher: valueBoolean,
     })
   }
-  const handleRegisterCourse = (e: any) => {
+  const handleRegisterCourse = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     let noSpaces = e.target.value.replaceAll(' ', '-')
     console.log(noSpaces)
@@ -204,10 +207,14 @@ const Enrolment: React.FC = () => {
       title: noSpaces,
     })
   }
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (input.name === '') return alert('LLenar el formulario')
-    axios.post('/students', input)
+    try {
+      ApiMethods.Post("/students",input)
+    } catch (e) {
+      throw e
+    }
 
     setInput({
       name: '',
@@ -215,16 +222,19 @@ const Enrolment: React.FC = () => {
       status: '',
       birthdate: '',
       nationality: '',
-      DNI: 0,
+      DNI: '',
       coursesIds: [],
     })
     return alert('created')
   }
-  const handleSubmitCourse = (e: any) => {
+  const handleSubmitCourse = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (newCourse.title === '') return alert('Llena el input')
-    axios.post('courses/createCourse', newCourse)
-
+    try {
+      ApiMethods.Post("/courses/createCourse", newCourse)
+    } catch (e) {
+      throw e
+    }
     setNewCourse({
       title: '',
     })
@@ -249,7 +259,7 @@ const Enrolment: React.FC = () => {
                 name='name'
                 value={input.name}
                 required
-                onChange={e => handleInput(e)}></input>
+                onChange={(e) => handleInput(e)}></input>
               <label>Name(s)</label>
               {Errors.name && <p className={su.error}>{Errors.name}</p>}
             </div>
