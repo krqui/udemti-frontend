@@ -1,0 +1,106 @@
+.container {
+  display: block;
+  width: 100vw;
+  height: 1100px;
+  background-color: rgb(255, 255, 255);
+
+  &__top {
+    display: block;
+    height: 120px;
+    background-color: rgb(112, 112, 253);
+    box-shadow: rgb(50 50 93 / 25%) 0px 13px 27px -5px, rgb(0 0 0 / 30%) 0px 8px 16px -8px;
+
+
+    &__title {
+      display: block;
+
+      .title {
+        color: whitesmoke;
+        font-size: 36px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    }
+
+    &__subtitle {
+      display: block;
+
+      .subtitle {
+        color: wheat;
+        font-size: 26px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    width: 100vw;
+
+    &__students {
+      width: 24%;
+    }
+
+    &__update {
+      width: 76%;
+
+      &__block {
+        display: block;
+      }
+    }
+  }
+}
+
+.update__form {
+  display: block;
+  margin-top: 8px;
+
+  &__title {
+    font-size: 20px;
+    text-align: center;
+  }
+ 
+  &__d {
+    display: block;
+    margin: 10px 10px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    width: 96%;
+    
+  }
+  &__div {
+    display: flex;
+    width: 800px;
+    justify-content: space-between;
+
+    &__input {
+      width: 400px;
+      margin: 8px 6px;
+      background-color: white;
+      color: black;
+      border-color:brown
+    }
+  }
+}
+
+.course__title {
+  text-align: start;
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+.enrolment__container__main__form__buttondiv {
+  button {
+    margin:6px 10px
+  }
+}
+
+.coursesselected {
+  background-color: black;
+  text-align: left;
+  margin:18px 10px;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  &__item {
+    margin-left: 10px;
+  }
+}

@@ -1,0 +1,124 @@
+.containermax {
+  display: block;
+  height: 100vh;
+  background-color: black;
+
+  .header {
+    height: 96px;
+
+    &__container {
+      width: 100vw;
+
+      &__title {
+        margin-top: 20px;
+        font-size: 45px;
+        min-width: 200px;
+        font-family: 'Prata', serif;
+        color: white;
+      }
+
+      &__subtitle {
+        font-family: 'Prata', serif;
+        font-size: 30px;
+        color: wheat;
+      }
+    }
+  }
+}
+
+.body {
+  height: 750px;
+  margin-top: 50px;
+  display: flex;
+  background-image: url('https://res.cloudinary.com/dby5zzxin/image/upload/v1666678993/udemti/zonaiflwztkzu8zws4fh.jpg');
+  background-size: cover;
+  .picture {
+    margin: auto 0px;
+    width: 50vw;
+    min-width: 700px;
+
+    &__container {
+      margin-top: 50px;
+      max-height: 580px;
+      margin-left: 34px;
+      box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+      img {
+        height: 100%;
+      }
+    }
+  }
+
+  .options {
+    height: 700px;
+    width: 50vw;
+
+    .select__students {
+      width: 100%;
+      height: 50%;
+      padding: 10px;
+
+      &__button {
+        width: 280px;
+        height: 100px;
+        display: inline-block;
+        position: relative;
+        top: 120px;
+        margin: 12px;
+        overflow: hidden;
+        background: transparent;
+        border: 2px solid rgb(255, 213, 96);
+        color: white;
+        font-family: 'Prata', serif;
+        font-size: 28px;
+        letter-spacing: 0.8px;
+        cursor: pointer;
+        background-color: rgb(231, 231, 231);
+        box-shadow: rgba(5, 5, 4, 0.4) 5px 5px, rgba(5, 5, 4, 0.4) 10px 10px,
+          rgba(5, 5, 4, 0.4) 20px 20px, rgba(5, 5, 4, 0.4) 25px 25px;
+        transition: 0.5s;
+      }
+
+      &__button:hover {
+        background-color: rgb(41, 41, 41);
+        scale: 1.5;
+      }
+      a:hover {
+        color: rgb(255, 213, 96);
+      }
+    }
+    .select__register {
+      width: 100%;
+      height: 50%;
+      padding: 20px;
+
+      &__button {
+        width: 280px;
+        height: 100px;
+        display: inline-block;
+        position: relative;
+        top: 100px;
+        margin: 12px;
+        overflow: hidden;
+        background: transparent;
+        border: 2px solid white;
+        color: white;
+        font-family: 'Prata', serif;
+        font-size: 28px;
+        letter-spacing: 0.8px;
+        cursor: pointer;
+        background-color: rgb(255, 213, 96);
+        box-shadow: rgba(255, 204, 0, 0.4) 5px 5px,
+          rgba(255, 204, 0, 0.4) 10px 10px, rgba(255, 204, 0, 0.4) 20px 20px,
+          rgba(255, 204, 0, 0.4) 25px 25px;
+        transition: 0.5s;
+      }
+
+      &__button:hover {
+        background-color: rgb(250, 218, 129);
+        scale: 1.5;
+      }
+    }
+  }
+}

@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import NavBar from './components/NavBar/NavBar'
+import Home from './components/Home/Home'
+import Admin from './components/Admin/Admin'
+import Footer from './components/Footer/Footer'
+import LandingPage from './components/LandingPage/LandingPage'
+import Enrolment from './components/Enrolment/Enrolment'
+import './App.css'
+import 'bulma/css/bulma.min.css'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <BrowserRouter>
+        <NavBar></NavBar>
+        <Routes>
+          <Route path='/' element={<LandingPage></LandingPage>}></Route>
+          <Route path='/courses' element={<Home></Home>}></Route>
+          <Route path='/enroll' element={<Enrolment></Enrolment>}></Route>
+          <Route path='/admin/:id' element={<Admin></Admin>}></Route>
+        </Routes>
+        {/*<Footer></Footer>*/}
+      </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

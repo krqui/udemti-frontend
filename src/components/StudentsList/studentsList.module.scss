@@ -1,0 +1,50 @@
+.box {
+  margin: 0 auto;
+  background-color: rgb(0, 0, 0);
+  width: 1400px;
+
+  &__headers {
+    background-color: black;
+    margin: 30px auto;
+
+    &__item {
+      display: inline-block;
+      font-size: 30px;
+      padding: 1.2rem;
+      background-color: antiquewhite;
+
+      .titless {
+        padding: 0.5rem 1rem;
+        border-radius: 0.3rem;
+        transition: all 0.3s;
+        border-style: solid;
+        border-color: red;
+        text-align: left;
+
+        &__name {
+          display: inline-block;
+          width: 330px;
+        }
+
+        &__status {
+          display: inline-block;
+          width: 210px;
+        }
+
+        &__dni {
+          display: inline-block;
+          width: 100px;
+        }
+
+        &__nationality {
+          display: inline-block;
+          width: 180px;
+        }
+        &__courses {
+          display: inline-block;
+          width: 460px;
+        }
+      }
+    }
+  }
+}
